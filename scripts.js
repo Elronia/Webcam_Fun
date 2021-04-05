@@ -30,8 +30,17 @@ function paintToCanvas() {
 }
 
 function takePhoto() {
+    // played the sound
     snap.currentTime = 0;
     snap.play();
+
+    // take the data out of the canvas
+    const data = canvas.toDataURL('image/jpeg');
+    const link = document.createElement('a');
+    link.href = data;
+    link.setAttribute('download', 'beautiful');
+    link.innerHTML = `<img src="${data}" alt="Beautiful Girl"/>`;
+    strip.insertBefore(link, strip.firstChild);
 }
 
 getVideo();
